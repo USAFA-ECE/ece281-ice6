@@ -10,12 +10,11 @@
 --| 
 --| ---------------------------------------------------------------------------
 --|
---| FILENAME      : MooreElevatorController_tb.vhd (TEST BENCH)
---| AUTHOR(S)     : Capt Phillip Warner, Capt Dan Johnson, **Your Name Here**
+--| FILENAME      : TDM4_tb.vhd (TEST BENCH)
+--| AUTHOR(S)     : Capt Phillip Warner, Capt Dan Johnson, **Your Name**
 --| CREATED       : 03/2017 Last modified on 06/24/2020
---| DESCRIPTION   : This file tests the Moore elevator controller module
+--| DESCRIPTION   : This file tests the 4 to 1 TDM.
 --|
---| DOCUMENTATION : None
 --|
 --+----------------------------------------------------------------------------
 --|
@@ -23,15 +22,12 @@
 --|
 --|    Libraries : ieee
 --|    Packages  : std_logic_1164, numeric_std, unisim
---|    Files     : MooreElevatorController.vhd
+--|    Files     : TDM4.vhd
 --|
 --+----------------------------------------------------------------------------
 --|
 --| NAMING CONVENSIONS :
 --|
---|    xb_<port name>           = off-chip bidirectional port ( _pads file )
---|    xi_<port name>           = off-chip input port         ( _pads file )
---|    xo_<port name>           = off-chip output port        ( _pads file )
 --|    b_<port name>            = on-chip bidirectional port
 --|    i_<port name>            = on-chip input port
 --|    o_<port name>            = on-chip output port
@@ -50,74 +46,59 @@
 library ieee;
   use ieee.std_logic_1164.all;
   use ieee.numeric_std.all;
- 
-entity elevator_controller_fsm_tb is
-end elevator_controller_fsm_tb;
-
-architecture test_bench of elevator_controller_fsm_tb is 
-	
-	component elevator_controller_fsm is
-		Port ( i_clk 	 : in  STD_LOGIC;
-			   i_reset 	 : in  STD_LOGIC; -- synchronous
-			   i_stop 	 : in  STD_LOGIC;
-			   i_up_down : in  STD_LOGIC;
-			   o_floor 	 : out STD_LOGIC_VECTOR (3 downto 0));
-	end component elevator_controller_fsm;
-	
-	-- test signals
-	signal w_clk, w_reset, w_stop, w_up_down : std_logic := '0';
-	signal w_floor : std_logic_vector(3 downto 0) := (others => '0');
   
-	-- 50 MHz clock
-	constant k_clk_period : time := 20 ns;
+entity TDM4_tb is
+end TDM4_tb;
+
+architecture test_bench of TDM4_tb is 	
+  
+	component TDM4 is
+		generic ( constant k_width : natural  := 4); -- bits in input and output
+
+	end component TDM4;
+
+	-- Setup test clk (20 ns --> 50 MHz) and other signals
+
+
 	
 begin
 	-- PORT MAPS ----------------------------------------
-
-	uut_inst : elevator_controller_fsm port map (
-		i_clk     => w_clk,
-		i_reset   => w_reset,
-		i_stop    => w_stop,
-		i_up_down => w_up_down,
-		o_floor   => w_floor
+	-- map ports for any component instances (port mapping is like wiring hardware)
+	uut_inst : TDM4 
+	generic map ( k_WIDTH =>  )
+	port map ( i_clk   => 
+		       i_reset => 
+		       i_D3    => 
+		       i_D2    => 
+		       i_D1    => 
+		       i_D0    => 
+		       o_data  => 
+		       o_sel   => 
 	);
-	-----------------------------------------------------
+	-----------------------------------------------------	
 	
-	-- PROCESSES ----------------------------------------
-	
+	-- PROCESSES ----------------------------------------	
 	-- Clock Process ------------------------------------
 	clk_process : process
 	begin
-		w_clk <= '0';
-		wait for k_clk_period/2;
-		
-		w_clk <= '1';
-		wait for k_clk_period/2;
+
+
+
 	end process clk_process;
-	
+	-----------------------------------------------------	
 	
 	-- Test Plan Process --------------------------------
 	test_process : process 
 	begin
-        -- i_reset into initial state (o_floor 1)
-        w_reset <= '1';  wait for k_clk_period;
-            assert w_floor = "0001" report "bad reset" severity failure; 
-        -- clear reset
+		-- assign test values to data inputs
+
+				
+		-- reset the system first
+		i_reset <= '1';
+		wait for k_clk_period;		
+		i_reset <= '0';
 		
-		-- active UP signal
-		w_up_down <= '1'; 
-		
-		-- stay on each o_floor for 2 cycles and then move up to the next o_floor
-        w_stop <= '1';  wait for k_clk_period * 2;
-            assert w_floor = "0001" report "bad wait on floor1" severity failure;
-        w_stop <= '0';  wait for k_clk_period;
-            assert w_floor = "0010" report "bad up from floor1" severity failure;
-		-- rest of cases
-        
-        -- go back DOWN
-          
-		  	
-		wait; -- wait forever
+		wait; -- let the TDM do its work
 	end process;	
 	-----------------------------------------------------	
 	

@@ -1,6 +1,6 @@
 # ICE 5: Basic Elevator Controller
 
-VHDL for ECE 281 [ICE 5](https://usafa-ece.github.io/ece281-book/ICE/ICE5.html)
+VHDL for ECE 281 [ICE 6](https://usafa-ece.github.io/ece281-book/ICE/ICE6.html)
 
 Targeted toward Digilent Basys3. Make sure to install the [board files](https://github.com/Xilinx/XilinxBoardStore/tree/2018.2/boards/Digilent/basys3).
 
@@ -21,7 +21,7 @@ The workflow uses GHDL to analyze, elaborate, and run the entity specified in th
 
 ```yaml
 env:
-  TESTBENCH_ENTITY: elevator_controller_fsm
+  TESTBENCH_ENTITY: TDM4
 ```
 
 If successful then GHDL will quietly exit with a `0` code.
