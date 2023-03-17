@@ -1,0 +1,42 @@
+# Tell git what files to ignore
+# start by ignore everything, un-ignore specifics
+*
+
+# never ignore itself
+!.gitignore
+
+# don't ignore the project files
+!*.xpr
+
+# don't ignore waveform files
+!*.wcfg
+
+# don't ignore hardware description files
+!src/
+!src/**/
+!src/**/*.vhd
+!src/**/*.xdc
+!src/**/*.bd
+!src/**/*.bit
+
+# or configuration files
+!cfg/
+!cfg/**/*.wcfg
+
+# don't ignore build files
+!build.tcl
+!build.bat
+
+# don't ignore bitstream
+!*.runs/
+!*.runs/**/
+!*.runs/**/*.bit
+
+# don't ignore markdown
+!*.md
+!*.png
+!*.jpg
+
+# don't ignore .github
+!.github/
+!.github/**/*

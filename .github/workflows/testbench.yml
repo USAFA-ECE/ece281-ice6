@@ -1,0 +1,23 @@
+---
+env:
+  TESTBENCH_ENTITY: elevator_controller_fsm
+
+name: GHDL Testbench
+on: [push]
+jobs:
+  Student-Testbench:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Setup GHDL nightly
+        uses: ghdl/setup-ghdl-ci@nightly
+        with:
+          backend: llvm
+      - run: ghdl --version
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - run: ghdl analyze -v src/hdl/${TESTBENCH_ENTITY}.vhd
+      - run: ghdl analyze -v src/hdl/${TESTBENCH_ENTITY}_tb.vhd
+      - run: ls -R
+      - run: ghdl elaborate -v ${TESTBENCH_ENTITY}_tb
+      - run: ghdl run -v ${TESTBENCH_ENTITY}_tb  --stop-time=1us
