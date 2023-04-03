@@ -1,4 +1,4 @@
-# ICE 5: Basic Elevator Controller
+# ICE 6: Time Division Multiplexing
 
 VHDL for ECE 281 [ICE 6](https://usafa-ece.github.io/ece281-book/ICE/ICE6.html)
 
