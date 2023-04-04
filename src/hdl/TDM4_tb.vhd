@@ -94,9 +94,9 @@ begin
 
 				
 		-- reset the system first
-		i_reset <= '1';
+		w_reset <= '1';
 		wait for k_clk_period;		
-		i_reset <= '0';
+		w_reset <= '0';
 		
 		wait; -- let the TDM do its work
 	end process;	
