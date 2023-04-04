@@ -53,13 +53,15 @@ end TDM4_tb;
 architecture test_bench of TDM4_tb is 	
   
 	component TDM4 is
-		generic ( constant k_width : natural  := 4); -- bits in input and output
+		-- fill in from TDM4.vhd
 
 	end component TDM4;
 
 	-- Setup test clk (20 ns --> 50 MHz) and other signals
-
-
+	
+	-- Constants
+	constant k_IO_WIDTH : natural := 4;
+	-- Signals
 	
 begin
 	-- PORT MAPS ----------------------------------------
