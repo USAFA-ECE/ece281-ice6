@@ -10,7 +10,7 @@ Tested on Windows 11.
 
 ## Build the project
 
-You can simply open `elevatorController.xpr` and Vivado will do the rest!
+You can simply open `tdm.xpr` and Vivado will do the rest!
 
 ## GitHub Actions Testbench
 
