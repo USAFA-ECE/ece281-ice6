@@ -73,9 +73,10 @@ architecture test_bench of TDM4_tb is
 	-- Signals
 	signal w_clk, w_reset : std_logic := '0';
 	signal w_D3, w_D2, w_D1, w_D0 : std_logic_vector(k_IO_WIDTH - 1 downto 0);
-	signal w_data, w_sel : std_logic_vector(k_IO_WIDTH - 1 downto 0);
+	-- signal w_data, w_sel : std_logic_vector(k_IO_WIDTH - 1 downto 0);
+	signal f_data : std_logic_vector(k_IO_WIDTH - 1 downto 0);
 	
-	signal   f_sel_n	 : unsigned(1 downto 0)	:= "00";
+	signal   f_sel_n	 : std_logic_vector(3 downto 0);
 	
 begin
 	-- PORT MAPS ----------------------------------------
@@ -88,8 +89,8 @@ begin
 		       i_D2    => w_D2,
 		       i_D1    => w_D1,
 		       i_D0    => w_D0,
-		       o_data  => w_data,
-		       o_sel   => w_sel
+		       o_data  => f_data,
+		       o_sel   => f_sel_n
 	);
 	-----------------------------------------------------	
 	
