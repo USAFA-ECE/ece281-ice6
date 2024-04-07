@@ -72,19 +72,14 @@ architecture behavioral of TDM4 is
 	
 begin	
 	
-	-- PROCESSES ----------------------------------------
-	
-	-- 2 Bit counter Process ----------------------------
-	-- counter rolls over automatically
-	-- asynchronous reset to "00"
 	twoBitCounter_proc : process(i_clk, i_reset)
-	begin
-		if i_reset = '1' then
-			f_sel <= "00";
-		elsif rising_edge(i_clk) then
-			f_sel <= f_sel + 1;
-		end if;
-	end process twoBitCounter_proc;
+begin
+    if i_reset = '1' then
+        f_sel <= "00";
+    elsif rising_edge(i_clk) then
+        f_sel <= f_sel + 1;
+    end if;
+end process twoBitCounter_proc;
 	-----------------------------------------------------
 	
 
