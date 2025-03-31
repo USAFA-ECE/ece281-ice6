@@ -68,14 +68,15 @@ begin
 	-- map ports for any component instances (port mapping is like wiring hardware)
 	uut_inst : TDM4 
 	generic map ( k_WIDTH =>  )
-	port map ( i_clk   => 
-		       i_reset => 
-		       i_D3    => 
-		       i_D2    => 
-		       i_D1    => 
-		       i_D0    => 
-		       o_data  => 
-		       o_sel   => 
+	port map ( 
+       i_clk   => 
+       i_reset => 
+       i_D3    => 
+       i_D2    => 
+       i_D1    => 
+       i_D0    => 
+       o_data  => 
+       o_sel   => 
 	);
 	-----------------------------------------------------	
 	
