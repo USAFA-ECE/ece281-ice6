@@ -5,6 +5,10 @@
 # never ignore itself
 !.gitignore
 
+# don't ignore anything with prelab
+!*prelab*
+
+
 # don't ignore the project files
 !*.xpr
 
@@ -13,24 +17,15 @@
 
 # don't ignore hardware description files
 !src/
-!src/**/
-!src/**/*.vhd
-!src/**/*.xdc
-!src/**/*.bd
-!src/**/*.bit
+!src/**
 
 # or configuration files
 !cfg/
 !cfg/**/*.wcfg
 
-# don't ignore build files
-!build.tcl
-!build.bat
-
 # don't ignore bitstream
 !*.runs/
-!*.runs/**/
-!*.runs/**/*.bit
+!*.runs/**
 
 # don't ignore markdown
 !*.md
@@ -39,4 +34,5 @@
 
 # don't ignore .github
 !.github/
-!.github/**/*
+!.github/**
+
